@@ -2,23 +2,19 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 function App() {
-  /*7*/
-  return <div>
-		text
-    <p>
-      abzac 1
-    </p>
-    <p>
-      abzac 2
-    </p>
-    <p>
-      abzac 3
-    </p>
-    <p id='eee'>
-      abzac 3
-    </p>
-	</div>;
   /*8*/
+  return <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+	</ul>;
 }
 
 export default App;
