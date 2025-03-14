@@ -2,11 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 function App() {
-	const obj = {name: 'john', surname: 'smit'};
+	const attr = 'block';
 	
-	return <div>
-		<p>{obj.name}</p>
-		<p>{obj.surname}</p>
+	return <div id={attr}>
+		text
 	</div>;
 }
 export default App;
