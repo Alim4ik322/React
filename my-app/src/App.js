@@ -2,42 +2,18 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 function App() {
-	return (
-	  <div>
-		<ul>
-			<li>1</li>
-			<li>2</li>
-			<li>3</li>
-			<li>4</li>
-			<li>5</li>
-			<li>6</li>
-			<li>7</li>
-			<li>8</li>
-			<li>9</li>
-			<li>10</li>
-		</ul>
-		<table>
-		<tbody>
-			<tr>
-				<td>1</td>
-				<td>2</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-			</tr>
-			<tr>
-				<td>7</td>
-				<td>8</td>
-				<td>9</td>
-			</tr>
-		</tbody>
-		</table>
-	  </div>
-	);
-	
-  }
-  
+	const num1 = 3;
+	const num2 = 2;
+	const name = 'john';
+	const surname = 'smit';
+	const num = 4;
+	return <div>
+		<p>Задание 1</p>
+		<p>result: {num1 ** num2}</p>
+		<p>Задание 2</p>
+		<p>result: {name + ' ' + surname}</p>
+		<p>Задание 3</p>
+		<p>result: {Math.sqrt(num)}</p>
+	</div>;
+}
 export default App;
