@@ -2,19 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 function App() {
-	const isAdmin = true; 
-	let content;
-	if (isAdmin) {
-	  content = (
-		<div>
-		  <p>Добро пожаловать, администратор!</p>
-		  <p>Вы имеете доступ к дополнительным функциям.</p>
-		</div>
-	  );
-	} else {
-	  content = null; 
-	} 
-	return content; 
+	const age = 19;
+	
+	return <div>
+		{age >18 ? <p>вы совершеннолетний</p> : <p>вы несовершеннолетний</p>}
+	</div>;
 }  
 export default App;
   
