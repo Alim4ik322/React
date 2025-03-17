@@ -2,23 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 function App() {
-	function getDigitsSum(num) {
-		let sum = 0;
-		while (num > 0) {
-		  sum += num % 10; 
-		  num = (num / 10) | 0; 
-		}
-		return sum;
-	  }
-	
-	
-	const sum = getDigitsSum(12345);
-	
+	function show1() {
+		alert(1);
+	}
+	function show2() {
+		alert(2);
+	}
 	return <div>
-		<p>
-			Ответ:{sum}
-		</p>
-	</div>
+		<button onClick={show1}>act1</button>
+		<button onClick={show2}>act2</button>
+	</div>;
 }
 export default App;
   
