@@ -2,19 +2,20 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 function App() {
-	let text;
-	const isAdult = true;
-	
-	if (isAdult) {
-		text = <p>Вы совершеннолетний</p>;
-	}
-	else {
-		text = <p>Вы несовершеннолетний.</p>;
-	}
-	
-	return <div>
-		{text}
-	</div>;
-}
-  
+	const isAdmin = true; 
+	let content;
+	if (isAdmin) {
+	  content = (
+		<div>
+		  <p>Добро пожаловать, администратор!</p>
+		  <p>Вы имеете доступ к дополнительным функциям.</p>
+		</div>
+	  );
+	} else {
+	  content = null; 
+	} 
+	return content; 
+}  
 export default App;
+  
+  
