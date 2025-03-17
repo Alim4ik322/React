@@ -2,10 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 function App() {
-	const isAuth = true;
+	const hide = false;
 	
 	return <div>
-		{isAuth && <p>вы авторизованы</p>}
+		{!hide && <p>пожалуйста, авторизуйтесь</p>}
 	</div>;
 }
 export default App;
