@@ -2,16 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 function App() {
-	function func(event, arg1, arg2) {
-	  console.log(event, arg1, arg2);
+	function func(arg1, event, arg2) {
+	  console.log(arg1, event, arg2);
 	}
   
 	return (
 	  <div>
-		<button onClick={event => func(event, 'eee', 'fff')}>act</button>
+		<button onClick={event => func('eee', event, 'fff')}>act</button>
 	  </div>
 	);
-}
+  }
 export default App;
   
   
