@@ -2,11 +2,23 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 function App() {
-	const hide = false;
+	function getDigitsSum(num) {
+		let sum = 0;
+		while (num > 0) {
+		  sum += num % 10; 
+		  num = (num / 10) | 0; 
+		}
+		return sum;
+	  }
+	
+	
+	const sum = getDigitsSum(123);
 	
 	return <div>
-		{!hide && <p>пожалуйста, авторизуйтесь</p>}
-	</div>;
+		<p>
+			Ответ:{sum}
+		</p>
+	</div>
 }
 export default App;
   
