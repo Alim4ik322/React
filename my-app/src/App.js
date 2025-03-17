@@ -2,16 +2,17 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 function App() {
-	function func(arg1, event, arg2) {
-	  console.log(arg1, event, arg2);
-	}
-  
-	return (
-	  <div>
-		<button onClick={event => func('eee', event, 'fff')}>act</button>
-	  </div>
-	);
-  }
+	const arr = [
+		<li>1</li>,
+		<li>2</li>,
+		<li>3</li>,
+		<li>4</li>,
+		<li>5</li>,
+	];
+	return <div>
+		{arr}
+	</div>;
+}
 export default App;
   
   
