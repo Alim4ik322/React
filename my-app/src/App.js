@@ -12,7 +12,7 @@ function App() {
 	  }
 	
 	
-	const sum = getDigitsSum(123);
+	const sum = getDigitsSum(12345);
 	
 	return <div>
 		<p>
