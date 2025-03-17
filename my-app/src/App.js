@@ -2,19 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 function App() {
-	function show1() {
-		alert(1);
+	function func1(event) {
+		console.log(event); // объект 
 	}
-	function show2() {
-		alert(2);
-	}
-	function show3() {
-		alert(3);
-	}
+	function func2(event) {
+		console.log(event.target); // Выводим элемент, на который кликнули
+	  }
+	
 	return <div>
-		<button onClick={show1}>act1</button>
-		<button onClick={show2}>act2</button>
-		<button onClick={show3}>act3</button>
+		    <button onClick={func1}>Вывести объект события</button>
+			<button onClick={func2}>Вывести элемент клика</button>
 	</div>;
 }
 export default App;
