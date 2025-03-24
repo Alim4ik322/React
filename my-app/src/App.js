@@ -3,25 +3,13 @@ import './App.css';
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import uuid from 'react-uuid';
-
 function App() {
-	const[name, setName]=useState('xxxx')
-  const[surname, setSurname]=useState('xxxx')
-  const[age, setAge]=useState('xxxx')
+	const [isBanned, setIsbanned] = useState(false);
 	
 	return <div>
-    <span>{name}</span>
-    <span>      </span>
-    <span>{surname}</span>
-    <span>      </span>
-    <span>{age}</span>
-    <span>      </span>
-		<button onClick={() => setName('John')}>
-			btn</button> 
-    <span>      </span>
-    <button onClick={() => setSurname('Johnson')}>
-			btn</button> 
-    <button onClick={() => setAge('38')}>
+		<span>{isBanned ? 'пользователь в бане' : 
+			'пользователь разбанен'}</span> 
+		<button onClick={() => setIsbanned(!isBanned)}>
 			btn</button> 
 	</div>;
 }
