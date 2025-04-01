@@ -4,15 +4,13 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import uuid from 'react-uuid';
 function App() {
-	const [count, setCount] = useState(0);
-	
+	const [value, setValue] = useState('');
+	const [value1, setValue1] = useState('');
 	return <div>
-		<span>{count}</span>
-    <span>       </span>
-		<button onClick={() => setCount(count 
-			+ 1)}>+</button> 
-      <button onClick={() => setCount(count 
-			- 1)}>-</button> 
+		<input value={value} onChange={event => setValue(event.target.value)} /> 
+		<p>text: {value}</p>
+		<input value1={value1} onChange={event => setValue1(event.target.value)} /> 
+		<p>text: {value1}</p>
 	</div>;
 }
 
