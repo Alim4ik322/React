@@ -4,13 +4,16 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import uuid from 'react-uuid';
 function App() {
-	const [value, setValue] = useState('');
-	const [value1, setValue1] = useState('');
+	const [value, setValue] = useState(0);
+	
+	function handleChange(event) {
+		setValue(event.target.value);
+	}
+	
 	return <div>
-		<input value={value} onChange={event => setValue(event.target.value)} /> 
-		<p>text: {value}</p>
-		<input value1={value1} onChange={event => setValue1(event.target.value)} /> 
-		<p>text: {value1}</p>
+		<input value={value} onChange={handleChange} 
+			/> 
+		<p>{value ** 2}</p>
 	</div>;
 }
 
