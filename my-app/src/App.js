@@ -21,11 +21,26 @@ function App() {
     setCurrentId(note.id);
   }
 
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
+  }
+
+  function handleUpdate() {
+    setNotes(notes.map(note => {
+      if (note.id === currentId) {
+        return { ...note, ...form };
+      }
+      return note;
+    }));
+  }
+
   return (
     <div>
-      <input value={form.prop1} readOnly />
-      <input value={form.prop2} readOnly />
-      <input value={form.prop3} readOnly />
+      <input name="prop1" value={form.prop1} onChange={handleChange} />
+      <input name="prop2" value={form.prop2} onChange={handleChange} />
+      <input name="prop3" value={form.prop3} onChange={handleChange} />
+      <button onClick={handleUpdate} disabled={!currentId}>Обновить</button>
 
       <ul>
         {notes.map(note => (
@@ -33,7 +48,7 @@ function App() {
             <span>{note.prop1} </span>
             <span>{note.prop2} </span>
             <span>{note.prop3} </span>
-            <button onClick={() => handleSelect(note)}>Заполнить инпуты</button>
+            <button onClick={() => handleSelect(note)}>Редактировать</button>
           </li>
         ))}
       </ul>
