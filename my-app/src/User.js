@@ -1,12 +1,12 @@
 import React from 'react';
 
-function User({ name, surn, age }) {
+function User({ name, surname, age }) {
 	return (
-		<tr>
-			<td>{name}</td>
-			<td>{surn}</td>
-			<td>{age}</td>
-		</tr>
+		<div>
+			<p>
+				Имя: <strong>{name}</strong>, Фамилия: <strong>{surname}</strong>, Возраст: <strong>{age}</strong>
+			</p>
+		</div>
 	);
 }
 
