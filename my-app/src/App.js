@@ -6,22 +6,42 @@ import uuid from 'react-uuid';
 // ❌ Удалено: import { useState } from "react";
 
 function App() {
-	const [checked, setChecked] = useState(false);
-	const [message, setMessage] = useState('');
-
-	function handleClick() {
-		setMessage(checked ? 'Привет, пользователь!' : 'До свидания!');
-	}
+	const [html, setHtml] = useState(false);
+	const [css, setCss] = useState(false);
+	const [js, setJs] = useState(false);
 
 	return (
 		<div>
-			<input
-				type="checkbox"
-				checked={checked}
-				onChange={() => setChecked(!checked)}
-			/>
-			<button onClick={handleClick}>Проверить</button>
-			<p>{message}</p>
+			<label>
+				<input
+					type="checkbox"
+					checked={html}
+					onChange={() => setHtml(!html)}
+				/>
+				HTML
+			</label>
+			<br />
+			<label>
+				<input
+					type="checkbox"
+					checked={css}
+					onChange={() => setCss(!css)}
+				/>
+				CSS
+			</label>
+			<br />
+			<label>
+				<input
+					type="checkbox"
+					checked={js}
+					onChange={() => setJs(!js)}
+				/>
+				JS
+			</label>
+			<br />
+			<p>HTML: {html ? 'знает' : 'не знает'}</p>
+			<p>CSS: {css ? 'знает' : 'не знает'}</p>
+			<p>JS: {js ? 'знает' : 'не знает'}</p>
 		</div>
 	);
 }
