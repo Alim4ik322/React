@@ -1,11 +1,15 @@
 import React from 'react';
 
-function User({ id, name, surname, age }) {
+function User({ id, name, surname, age, banned, banUser }) {
 	return (
-		<div>
+		<div style={{ marginBottom: '10px' }}>
 			<p>
-				ID: <strong>{id}</strong>, Имя: <strong>{name}</strong>, Фамилия: <strong>{surname}</strong>, Возраст: <strong>{age}</strong>
+				ID: {id}, Имя: {name}, Фамилия: {surname}, Возраст: {age}, 
+				Статус: <strong>{banned ? 'ЗАБАНЕН' : 'Активен'}</strong>
 			</p>
+			{!banned && (
+				<button onClick={() => banUser(id)}>Забанить</button>
+			)}
 		</div>
 	);
 }
