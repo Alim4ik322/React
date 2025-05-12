@@ -5,31 +5,22 @@ import { nanoid } from 'nanoid';
 import uuid from 'react-uuid';
 // ❌ Удалено: import { useState } from "react";
 
-
 function App() {
-  const [values, setValues] = useState(Array(5).fill(0));
+	const [value1, setValue1] = useState('');
+	const [value2, setValue2] = useState('');
+	const [result, setResult] = useState(null);
 
-  function handleChange(index, event) {
-    const newValues = [...values];
-    newValues[index] = +event.target.value;
-    setValues(newValues);
-  }
-
-  const average = values.reduce((sum, num) => sum + num, 0) / values.length;
-
-  return (
-    <div>
-      {values.map((value, index) => (
-        <input
-          key={index}
-          value={value}
-          onChange={(event) => handleChange(index, event)}
-          type="number"
-        />
-      ))}
-      <p>Среднее арифметическое: {average}</p>
-    </div>
-  );
+	return (
+		<div>
+			<input value={value1} onChange={e => setValue1(e.target.value)} />
+			<input value={value2} onChange={e => setValue2(e.target.value)} />
+			
+			<button onClick={() => setResult(Number(value1) + Number(value2))}>Сумма</button>
+			<button onClick={() => setResult(Number(value1) * Number(value2))}>Произведение</button>
+			
+			<p>Результат: {result}</p>
+		</div>
+	);
 }
 
 export default App;
