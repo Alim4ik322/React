@@ -7,9 +7,13 @@ import uuid from 'react-uuid';
 
 function App() {
 	const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
+	const [input, setInput] = useState('');
 
 	function addNote() {
-		setNotes([...notes, notes.length + 1]);
+		if (input.trim() !== '') {
+			setNotes([...notes, input]);
+			setInput('');
+		}
 	}
 
 	return (
@@ -19,9 +23,13 @@ function App() {
 					<li key={index}>{note}</li>
 				))}
 			</ul>
+			<input
+				type="text"
+				value={input}
+				onChange={(e) => setInput(e.target.value)}
+			/>
 			<button onClick={addNote}>Добавить элемент</button>
 		</div>
 	);
 }
-
 export default App;
