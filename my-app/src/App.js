@@ -15,23 +15,27 @@ function App() {
 	];
 
 	return (
-		<div>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>Имя</th>
-						<th>Фамилия</th>
-						<th>Возраст</th>
-					</tr>
-				</thead>
-				<tbody>
-					<User name={users[0].name} surn={users[0].surn} age={users[0].age} />
-					<User name={users[1].name} surn={users[1].surn} age={users[1].age} />
-					<User name={users[2].name} surn={users[2].surn} age={users[2].age} />
-				</tbody>
-			</table>
-		</div>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Имя</th>
+					<th>Фамилия</th>
+					<th>Возраст</th>
+				</tr>
+			</thead>
+			<tbody>
+				{users.map(user => (
+					<User
+						key={user.id}
+						name={user.name}
+						surn={user.surn}
+						age={user.age}
+					/>
+				))}
+			</tbody>
+		</table>
 	);
 }
+
 
 export default App;
