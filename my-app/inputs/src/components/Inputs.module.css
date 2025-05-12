@@ -1,0 +1,17 @@
+.input1 {
+    background-color: lightblue;
+    border: 2px solid navy;
+    padding: 5px;
+}
+
+.input2 {
+    background-color: lightgreen;
+    border: 2px solid darkgreen;
+    padding: 5px;
+}
+
+.input3 {
+    background-color: lightcoral;
+    border: 2px solid brown;
+    padding: 5px;
+}
