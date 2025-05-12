@@ -7,61 +7,28 @@ import User from './User';
 import Employee from './Employee';
 import Users from './Users';
 import { nanoid as id } from 'nanoid';
-
-function toCelsius(fahrenheit) {
-  return ((fahrenheit - 32) * 5) / 9;
-}
-
-function toFahrenheit(celsius) {
-  return (celsius * 9) / 5 + 32;
-}
-
-function TemperatureInput({ scale, temperature, onTemperatureChange }) {
-  const scaleNames = { c: 'Цельсия', f: 'Фаренгейта' };
-
-  return (
-    <div>
-      <label>Температура в градусах {scaleNames[scale]}:</label>
-      <input
-        value={temperature}
-        onChange={(e) => onTemperatureChange(e.target.value)}
-      />
-    </div>
-  );
+function getSum(arr) {
+  return arr.reduce((acc, val) => acc + Number(val), 0);
 }
 
 function Calculator() {
-  const [temperature, setTemperature] = useState('');
-  const [scale, setScale] = useState('c');
+  const [value, setValue] = useState('');
+  const [nums, setNums] = useState([1, 2, 3]);
 
-  const handleCelsiusChange = (temp) => {
-    setTemperature(temp);
-    setScale('c');
-  };
+  function handleChange(event) {
+    setValue(event.target.value);
+  }
 
-  const handleFahrenheitChange = (temp) => {
-    setTemperature(temp);
-    setScale('f');
-  };
-
-  const celsius =
-    scale === 'f' ? toCelsius(parseFloat(temperature) || 0) : temperature;
-  const fahrenheit =
-    scale === 'c' ? toFahrenheit(parseFloat(temperature) || 0) : temperature;
+  function handleBlur() {
+    setNums([...nums, value]);
+    setValue('');
+  }
 
   return (
-    <>
-      <TemperatureInput
-        scale="c"
-        temperature={scale === 'c' ? temperature : celsius}
-        onTemperatureChange={handleCelsiusChange}
-      />
-      <TemperatureInput
-        scale="f"
-        temperature={scale === 'f' ? temperature : fahrenheit}
-        onTemperatureChange={handleFahrenheitChange}
-      />
-    </>
+    <div>
+      <p>{getSum(nums)}</p>
+      <input value={value} onChange={handleChange} onBlur={handleBlur} />
+    </div>
   );
 }
 
