@@ -13,22 +13,31 @@ const initNotes = [
 
 function App() {
   const [notes, setNotes] = useState(initNotes);
+  const [form, setForm] = useState({ prop1: '', prop2: '', prop3: '' });
+  const [currentId, setCurrentId] = useState(null);
 
-  function handleDelete(id) {
-    setNotes(notes.filter(note => note.id !== id));
+  function handleSelect(note) {
+    setForm({ prop1: note.prop1, prop2: note.prop2, prop3: note.prop3 });
+    setCurrentId(note.id);
   }
 
   return (
-    <ul>
-      {notes.map(note => (
-        <li key={note.id}>
-          <span>{note.prop1} </span>
-          <span>{note.prop2} </span>
-          <span>{note.prop3} </span>
-          <button onClick={() => handleDelete(note.id)}>Удалить</button>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <input value={form.prop1} readOnly />
+      <input value={form.prop2} readOnly />
+      <input value={form.prop3} readOnly />
+
+      <ul>
+        {notes.map(note => (
+          <li key={note.id}>
+            <span>{note.prop1} </span>
+            <span>{note.prop2} </span>
+            <span>{note.prop3} </span>
+            <button onClick={() => handleSelect(note)}>Заполнить инпуты</button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 export default App;
