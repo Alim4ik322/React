@@ -1,0 +1,13 @@
+<div>
+  <input [(ngModel)]="newTodo" placeholder="Введите задачу">
+  <button (click)="addTodo()">Добавить</button>
+</div>
+
+<ul>
+  <li *ngFor="let todo of todos">
+    <span [ngClass]="{ 'completed': todo.completed }" (dblclick)="toggleComplete(todo)">
+      {{ todo.text }}
+    </span>
+    <button (click)="deleteTodo(todo.id)">Удалить</button>
+  </li>
+</ul>
