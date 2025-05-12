@@ -7,29 +7,22 @@ import uuid from 'react-uuid';
 
 function App() {
 	const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
-	const [input, setInput] = useState('');
 
-	function addNote() {
-		if (input.trim() !== '') {
-			setNotes([...notes, input]);
-			setInput('');
-		}
+	function square(index) {
+		const copy = [...notes];
+		copy[index] = copy[index] ** 2;
+		setNotes(copy);
 	}
 
 	return (
-		<div>
-			<ul>
-				{notes.map((note, index) => (
-					<li key={index}>{note}</li>
-				))}
-			</ul>
-			<input
-				type="text"
-				value={input}
-				onChange={(e) => setInput(e.target.value)}
-			/>
-			<button onClick={addNote}>Добавить элемент</button>
-		</div>
+		<ul>
+			{notes.map((note, index) => (
+				<li key={index} onClick={() => square(index)}>
+					{note}
+				</li>
+			))}
+		</ul>
 	);
 }
+
 export default App;
