@@ -5,23 +5,30 @@ import { nanoid } from 'nanoid';
 import uuid from 'react-uuid';
 // ❌ Удалено: import { useState } from "react";
 
+
 function App() {
 	const [value, setValue] = useState('');
-	const [sum, setSum] = useState(null);
+	const [product, setProduct] = useState(null);
 
 	function handleBlur() {
-		const digits = value.split('').map(Number).filter(n => !isNaN(n));
-		const total = digits.reduce((acc, cur) => acc + cur, 0);
-		setSum(total);
+		const num = Number(value);
+		if (isNaN(num) || num <= 0) return;
+
+		let prod = 1;
+		for (let i = 1; i <= num; i++) {
+			if (num % i === 0) {
+				prod *= i;
+			}
+		}
+		setProduct(prod);
 	}
 
 	return (
 		<div>
 			<input value={value} onChange={e => setValue(e.target.value)} onBlur={handleBlur} />
-			<p>Сумма цифр: {sum}</p>
+			<p>Произведение делителей: {product}</p>
 		</div>
 	);
 }
-
 
 export default App;
