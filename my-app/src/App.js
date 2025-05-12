@@ -6,39 +6,20 @@ import uuid from 'react-uuid';
 // ❌ Удалено: import { useState } from "react";
 
 function App() {
-	const [notes, setNotes] = useState(['a', 'b', 'c']);
-	const [input, setInput] = useState('');
-	const [selectedIndex, setSelectedIndex] = useState(null);
+	const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
 
-	function handleClick(index) {
-		setSelectedIndex(index);
-		setInput(notes[index]);
-	}
-
-	function handleBlur() {
-		if (selectedIndex !== null) {
-			const copy = [...notes];
-			copy[selectedIndex] = input;
-			setNotes(copy);
-			setSelectedIndex(null);
-			setInput('');
-		}
+	function reverseOrder() {
+		setNotes([...notes].reverse());
 	}
 
 	return (
 		<div>
 			<ul>
 				{notes.map((note, index) => (
-					<li key={index} onClick={() => handleClick(index)}>
-						{note}
-					</li>
+					<li key={index}>{note}</li>
 				))}
 			</ul>
-			<input
-				value={input}
-				onChange={(e) => setInput(e.target.value)}
-				onBlur={handleBlur}
-			/>
+			<button onClick={reverseOrder}>Перевернуть список</button>
 		</div>
 	);
 }
