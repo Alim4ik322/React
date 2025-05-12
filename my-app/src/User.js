@@ -1,10 +1,10 @@
 import React from 'react';
 
-function User({ name, surname, age }) {
+function User({ id, name, surname, age }) {
 	return (
 		<div>
 			<p>
-				Имя: <strong>{name}</strong>, Фамилия: <strong>{surname}</strong>, Возраст: <strong>{age}</strong>
+				ID: <strong>{id}</strong>, Имя: <strong>{name}</strong>, Фамилия: <strong>{surname}</strong>, Возраст: <strong>{age}</strong>
 			</p>
 		</div>
 	);

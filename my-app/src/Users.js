@@ -9,11 +9,12 @@ const initUsers = [
 ];
 
 function Users() {
-	const [users, setUsers] = useState(initUsers);
+	const [users] = useState(initUsers);
 
 	const items = users.map(user => (
 		<User
 			key={user.id}
+			id={user.id}
 			name={user.name}
 			surname={user.surname}
 			age={user.age}
