@@ -6,8 +6,9 @@ import uuid from 'react-uuid';
 // ❌ Удалено: import { useState } from "react";
 
 function App() {
-	const [date1, setDate1] = useState('');
-	const [date2, setDate2] = useState('');
+	const today = new Date().toISOString().split('T')[0];
+	const [date1, setDate1] = useState(today);
+	const [date2, setDate2] = useState(today);
 	const [diff, setDiff] = useState(null);
 
 	function handleClick() {
@@ -27,5 +28,6 @@ function App() {
 		</div>
 	);
 }
+
 
 export default App;
