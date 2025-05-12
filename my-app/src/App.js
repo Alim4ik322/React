@@ -6,25 +6,19 @@ import uuid from 'react-uuid';
 // ❌ Удалено: import { useState } from "react";
 
 function App() {
-	const today = new Date().toISOString().split('T')[0];
-	const [date1, setDate1] = useState(today);
-	const [date2, setDate2] = useState(today);
-	const [diff, setDiff] = useState(null);
+	const [value, setValue] = useState('');
+	const [sum, setSum] = useState(null);
 
-	function handleClick() {
-		const d1 = new Date(date1);
-		const d2 = new Date(date2);
-		const difference = Math.abs(d1 - d2);
-		const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-		setDiff(days);
+	function handleBlur() {
+		const digits = value.split('').map(Number).filter(n => !isNaN(n));
+		const total = digits.reduce((acc, cur) => acc + cur, 0);
+		setSum(total);
 	}
 
 	return (
 		<div>
-			<input type="date" value={date1} onChange={e => setDate1(e.target.value)} />
-			<input type="date" value={date2} onChange={e => setDate2(e.target.value)} />
-			<button onClick={handleClick}>Разница в днях</button>
-			<p>Разница: {diff} дней</p>
+			<input value={value} onChange={e => setValue(e.target.value)} onBlur={handleBlur} />
+			<p>Сумма цифр: {sum}</p>
 		</div>
 	);
 }
