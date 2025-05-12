@@ -5,32 +5,46 @@ import { nanoid } from 'nanoid';
 import uuid from 'react-uuid';
 // ❌ Удалено: import { useState } from "react";
 
-function App() {
-  const [notes, setNotes] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+const initDate = {
+  year: 2025,
+  month: 12,
+  day: 31,
+};
 
-  function changeHandler(index, event) {
-    const newNotes = [...notes];
-    newNotes[index] = event.target.value;
-    setNotes(newNotes);
+function App() {
+  const [date, setDate] = useState(initDate);
+
+  function handleChange(prop, event) {
+    setDate({ ...date, [prop]: event.target.value });
   }
 
-  function getAverage(arr) {
-    const nums = arr.map(Number).filter(n => !isNaN(n));
-    const sum = nums.reduce((acc, val) => acc + val, 0);
-    return (sum / nums.length).toFixed(2);
+  function getWeekDay({ year, month, day }) {
+    const dateObj = new Date(year, month - 1, day); // JS month: 0-based
+    const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+    return days[dateObj.getDay()];
   }
 
   return (
     <div>
-      {notes.map((note, index) => (
-        <input
-          key={index}
-          value={note}
-          onChange={event => changeHandler(index, event)}
-          style={{ marginRight: '5px' }}
-        />
-      ))}
-      <p>Среднее арифметическое: {getAverage(notes)}</p>
+      <input
+        type="number"
+        value={date.year}
+        onChange={(e) => handleChange('year', e)}
+      />
+      <input
+        type="number"
+        value={date.month}
+        onChange={(e) => handleChange('month', e)}
+      />
+      <input
+        type="number"
+        value={date.day}
+        onChange={(e) => handleChange('day', e)}
+      />
+      <p>
+        Дата: {date.year}-{date.month}-{date.day}
+      </p>
+      <p>День недели: {getWeekDay(date)}</p>
     </div>
   );
 }
