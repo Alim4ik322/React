@@ -1,12 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import Inputs from "./components/Inputs";
+import React from "react";
+import classes from "./App.module.css"; 
+import Inputs from "./components/Input"; 
 
 function App() {
     return (
-        <div>
-            <h2>CSS Modules в React</h2>
-            <Inputs />
+        <div className={classes.app}>
+            <h2 className={classes.title}>Форма с инпутами</h2>
+            <div className={classes.wrapper}>
+                <Inputs />
+            </div>
         </div>
     );
 }
