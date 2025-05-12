@@ -7,29 +7,44 @@ import User from './User';
 import Employee from './Employee';
 import Users from './Users';
 import { nanoid as id } from 'nanoid';
-function getSum(arr) {
-  return arr.reduce((acc, val) => acc + Number(val), 0);
-}
-
-function Calculator() {
+function App() {
+  const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
+  const [editNum, setEditNum] = useState(null);
   const [value, setValue] = useState('');
-  const [nums, setNums] = useState([1, 2, 3]);
 
-  function handleChange(event) {
+  function startEdit(index) {
+    setEditNum(index);
+    setValue(notes[index]);
+  }
+
+  function changeItem(event) {
     setValue(event.target.value);
   }
 
-  function handleBlur() {
-    setNums([...nums, value]);
+  function saveItem() {
+    const updated = [...notes];
+    updated[editNum] = value;
+    setNotes(updated);
+    setEditNum(null);
     setValue('');
   }
 
   return (
     <div>
-      <p>{getSum(nums)}</p>
-      <input value={value} onChange={handleChange} onBlur={handleBlur} />
+      {notes.map((note, index) => (
+        <p key={index} onClick={() => startEdit(index)}>
+          {note}
+        </p>
+      ))}
+
+      {editNum !== null && (
+        <>
+          <input value={value} onChange={changeItem} />
+          <button onClick={saveItem}>Сохранить</button>
+        </>
+      )}
     </div>
   );
 }
 
-export default Calculator;
+export default App;
