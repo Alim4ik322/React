@@ -6,25 +6,27 @@ import uuid from 'react-uuid';
 // ❌ Удалено: import { useState } from "react";
 
 function App() {
-	const [city, setCity] = useState('');
-
-	function handleChange(event) {
-		setCity(event.target.value);
-	}
+	const [ageGroup, setAgeGroup] = useState('');
 
 	return (
 		<div>
 			<label>
-				Выберите город:
-				<select value={city} onChange={handleChange}>
+				Выберите вашу возрастную группу:
+				<select value={ageGroup} onChange={e => setAgeGroup(e.target.value)}>
 					<option value="">-- выберите --</option>
-					<option value="Москва">Москва</option>
-					<option value="Санкт-Петербург">Санкт-Петербург</option>
-					<option value="Казань">Казань</option>
-					<option value="Новосибирск">Новосибирск</option>
+					<option value="0-12">от 0 до 12 лет</option>
+					<option value="13-17">от 13 до 17 лет</option>
+					<option value="18-25">от 18 до 25 лет</option>
+					<option value="25+">старше 25 лет</option>
 				</select>
 			</label>
-			<p>Ваш выбор: {city}</p>
+
+			<p>
+				{ageGroup === '0-12' && 'Вы относитесь к детской возрастной группе'}
+				{ageGroup === '13-17' && 'Вы подросток'}
+				{ageGroup === '18-25' && 'Вы молодой взрослый'}
+				{ageGroup === '25+' && 'Вы взрослый старше 25 лет'}
+			</p>
 		</div>
 	);
 }
