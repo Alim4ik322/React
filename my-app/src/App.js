@@ -6,42 +6,21 @@ import uuid from 'react-uuid';
 // ❌ Удалено: import { useState } from "react";
 
 function App() {
-	const [language, setLanguage] = useState('');
-
-	function handleChange(event) {
-		setLanguage(event.target.value);
-	}
+	const [text, setText] = useState('Привет, React!');
+	const [isChecked, setIsChecked] = useState(true);
 
 	return (
 		<div>
-			<p>Ваш любимый язык программирования:</p>
-			<input
-				type="radio"
-				name="lang"
-				value="JavaScript"
-				checked={language === 'JavaScript'}
-				onChange={handleChange}
-			/> JavaScript
-			<input
-				type="radio"
-				name="lang"
-				value="Python"
-				checked={language === 'Python'}
-				onChange={handleChange}
-			/> Python
-			<input
-				type="radio"
-				name="lang"
-				value="C++"
-				checked={language === 'C++'}
-				onChange={handleChange}
-			/> C++
+			<h3>Инпут с defaultValue:</h3>
+			<input defaultValue={text} />
 
-			<p>
-				Ваш выбор: {language}
-				{language === 'JavaScript' && ' — Отличный выбор! 💪'}
-			</p>
+			<h3>Чекбокс с defaultChecked:</h3>
+			<label>
+				<input type="checkbox" defaultChecked={isChecked} />
+				Чекбокс по умолчанию {isChecked ? 'отмечен' : 'не отмечен'}
+			</label>
 		</div>
 	);
 }
+
 export default App;
