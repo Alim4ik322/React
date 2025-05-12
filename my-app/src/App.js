@@ -5,45 +5,33 @@ import { nanoid } from 'nanoid';
 import uuid from 'react-uuid';
 import User from './User';
 import Employee from './Employee';
+import { nanoid as id } from 'nanoid';
+
 function App() {
-	const lastName1 = 'Кузнецов';
-	const firstName1 = 'Алексей';
-	const middleName1 = 'Викторович';
-	const salary1 = '70000';
-
-	const lastName2 = 'Смирнова';
-	const firstName2 = 'Мария';
-	const middleName2 = 'Павловна';
-	const salary2 = '80000';
-
-	const lastName3 = 'Тарасов';
-	const firstName3 = 'Дмитрий';
-	const middleName3 = 'Алексеевич';
-	const salary3 = '75000';
+	const users = [
+		{ id: id(), name: 'user1', surn: 'surn1', age: 30 },
+		{ id: id(), name: 'user2', surn: 'surn2', age: 31 },
+		{ id: id(), name: 'user3', surn: 'surn3', age: 32 },
+	];
 
 	return (
 		<div>
-			<Employee
-				lastName={lastName1}
-				firstName={firstName1}
-				middleName={middleName1}
-				salary={salary1}
-			/>
-			<Employee
-				lastName={lastName2}
-				firstName={firstName2}
-				middleName={middleName2}
-				salary={salary2}
-			/>
-			<Employee
-				lastName={lastName3}
-				firstName={firstName3}
-				middleName={middleName3}
-				salary={salary3}
-			/>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Имя</th>
+						<th>Фамилия</th>
+						<th>Возраст</th>
+					</tr>
+				</thead>
+				<tbody>
+					<User name={users[0].name} surn={users[0].surn} age={users[0].age} />
+					<User name={users[1].name} surn={users[1].surn} age={users[1].age} />
+					<User name={users[2].name} surn={users[2].surn} age={users[2].age} />
+				</tbody>
+			</table>
 		</div>
 	);
 }
-
 
 export default App;
