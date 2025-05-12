@@ -6,12 +6,13 @@ import uuid from 'react-uuid';
 import User from './User';
 
 function App() {
-  return (
-    <div>
-      <h1>Главный компонент App</h1>
-      <User />
-    </div>
-  );
+	return (
+		<div>
+			<User />
+			<User />
+			<User />
+		</div>
+	);
 }
 
 export default App;

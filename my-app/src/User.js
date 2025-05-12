@@ -1,7 +1,7 @@
 import React from 'react';
 
 function User() {
-  return <p>Это компонент User</p>;
+	return <p>User component</p>;
 }
 
 export default User;
