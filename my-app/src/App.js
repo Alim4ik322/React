@@ -8,17 +8,17 @@ import uuid from 'react-uuid';
 function App() {
 	const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
 
-	function square(index) {
+	function remove(index) {
 		const copy = [...notes];
-		copy[index] = copy[index] ** 2;
+		copy.splice(index, 1);
 		setNotes(copy);
 	}
 
 	return (
 		<ul>
 			{notes.map((note, index) => (
-				<li key={index} onClick={() => square(index)}>
-					{note}
+				<li key={index}>
+					{note} <button onClick={() => remove(index)}>Удалить</button>
 				</li>
 			))}
 		</ul>
