@@ -8,52 +8,61 @@ import Employee from './Employee';
 import Users from './Users';
 import { nanoid as id } from 'nanoid';
 
-function Item({ item, isFavorite, toggleFavorite }) {
-  return (
-    <div style={{ border: '1px solid gray', margin: 5, padding: 5 }}>
-      <p>{item.name}</p>
-      <button onClick={() => toggleFavorite(item.id)}>
-        {isFavorite ? 'Убрать из избранного' : 'В избранное'}
-      </button>
-    </div>
-  );
+function toCelsius(fahrenheit) {
+  return ((fahrenheit - 32) * 5) / 9;
 }
 
-function FavoriteList() {
-  const initialItems = [
-    { id: 1, name: 'Книга' },
-    { id: 2, name: 'Ноутбук' },
-    { id: 3, name: 'Кофе' }
-  ];
+function toFahrenheit(celsius) {
+  return (celsius * 9) / 5 + 32;
+}
 
-  const [favorites, setFavorites] = useState([]);
-
-  const toggleFavorite = (id) => {
-    setFavorites(favs =>
-      favs.includes(id) ? favs.filter(fid => fid !== id) : [...favs, id]
-    );
-  };
+function TemperatureInput({ scale, temperature, onTemperatureChange }) {
+  const scaleNames = { c: 'Цельсия', f: 'Фаренгейта' };
 
   return (
     <div>
-      <h3>Все товары</h3>
-      {initialItems.map(item => (
-        <Item
-          key={item.id}
-          item={item}
-          isFavorite={favorites.includes(item.id)}
-          toggleFavorite={toggleFavorite}
-        />
-      ))}
-
-      <h3>Избранное</h3>
-      <ul>
-        {initialItems
-          .filter(item => favorites.includes(item.id))
-          .map(item => <li key={item.id}>{item.name}</li>)}
-      </ul>
+      <label>Температура в градусах {scaleNames[scale]}:</label>
+      <input
+        value={temperature}
+        onChange={(e) => onTemperatureChange(e.target.value)}
+      />
     </div>
   );
 }
 
-export default FavoriteList;
+function Calculator() {
+  const [temperature, setTemperature] = useState('');
+  const [scale, setScale] = useState('c');
+
+  const handleCelsiusChange = (temp) => {
+    setTemperature(temp);
+    setScale('c');
+  };
+
+  const handleFahrenheitChange = (temp) => {
+    setTemperature(temp);
+    setScale('f');
+  };
+
+  const celsius =
+    scale === 'f' ? toCelsius(parseFloat(temperature) || 0) : temperature;
+  const fahrenheit =
+    scale === 'c' ? toFahrenheit(parseFloat(temperature) || 0) : temperature;
+
+  return (
+    <>
+      <TemperatureInput
+        scale="c"
+        temperature={scale === 'c' ? temperature : celsius}
+        onTemperatureChange={handleCelsiusChange}
+      />
+      <TemperatureInput
+        scale="f"
+        temperature={scale === 'f' ? temperature : fahrenheit}
+        onTemperatureChange={handleFahrenheitChange}
+      />
+    </>
+  );
+}
+
+export default Calculator;
