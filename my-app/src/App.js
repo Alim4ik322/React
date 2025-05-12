@@ -7,28 +7,32 @@ import uuid from 'react-uuid';
 
 
 function App() {
-	const [value, setValue] = useState('');
-	const [product, setProduct] = useState(null);
+	const [text, setText] = useState('');
 
-	function handleBlur() {
-		const num = Number(value);
-		if (isNaN(num) || num <= 0) return;
+	const translitMap = {
+		а: 'a', б: 'b', в: 'v', г: 'g', д: 'd',
+		е: 'e', ё: 'yo', ж: 'zh', з: 'z', и: 'i',
+		й: 'y', к: 'k', л: 'l', м: 'm', н: 'n',
+		о: 'o', п: 'p', р: 'r', с: 's', т: 't',
+		у: 'u', ф: 'f', х: 'h', ц: 'ts', ч: 'ch',
+		ш: 'sh', щ: 'sch', ъ: '', ы: 'y', ь: '',
+		э: 'e', ю: 'yu', я: 'ya'
+	};
 
-		let prod = 1;
-		for (let i = 1; i <= num; i++) {
-			if (num % i === 0) {
-				prod *= i;
-			}
-		}
-		setProduct(prod);
+	function transliterate(str) {
+		return str.split('').map(char => {
+			const lower = char.toLowerCase();
+			const isUpper = char !== lower;
+			const trans = translitMap[lower] || char;
+			return isUpper ? trans.charAt(0).toUpperCase() + trans.slice(1) : trans;
+		}).join('');
 	}
 
 	return (
 		<div>
-			<input value={value} onChange={e => setValue(e.target.value)} onBlur={handleBlur} />
-			<p>Произведение делителей: {product}</p>
+			<textarea value={text} onChange={e => setText(e.target.value)} />
+			<p>{transliterate(text)}</p>
 		</div>
 	);
 }
-
 export default App;
