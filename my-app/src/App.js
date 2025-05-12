@@ -8,53 +8,52 @@ import Employee from './Employee';
 import Users from './Users';
 import { nanoid as id } from 'nanoid';
 
-function TempInp({ temp, setTemp }) {
+function TemperatureInput({ scale, temperature, onTemperatureChange }) {
+  const scaleNames = { c: 'Цельсий', f: 'Фаренгейт' };
+
   return (
-    <div>
-      <label>Температура воды (в °C): </label>
+    <fieldset>
+      <legend>Температура в {scaleNames[scale]}:</legend>
       <input
         type="number"
-        value={temp}
-        onChange={e => setTemp(Number(e.target.value))}
+        value={temperature}
+        onChange={e => onTemperatureChange(e.target.value)}
       />
-    </div>
+    </fieldset>
   );
 }
 
-// Компонент Verdict: отображает агрегированное состояние воды
-function Verdict({ temp }) {
-  let text;
-
-  if (temp <= 0) {
-    text = 'Вода в твёрдом состоянии (лёд)';
-  } else if (temp >= 100) {
-    text = 'Вода в газообразном состоянии (пар)';
-  } else {
-    text = 'Вода в жидком состоянии';
-  }
-
-  return <p>{text}</p>;
+function toCelsius(f) {
+  return ((f - 32) * 5) / 9;
 }
 
-// Главный компонент-контейнер
+function toFahrenheit(c) {
+  return (c * 9) / 5 + 32;
+}
+
 function Calculator() {
-  const [temp, setTemp] = useState(0);
+  const [temperature, setTemperature] = useState('');
+  const [scale, setScale] = useState('c');
+
+  const handleCelsiusChange = (temp) => {
+    setScale('c');
+    setTemperature(temp);
+  };
+
+  const handleFahrenheitChange = (temp) => {
+    setScale('f');
+    setTemperature(temp);
+  };
+
+  const celsius = scale === 'f' ? toCelsius(temperature) : temperature;
+  const fahrenheit = scale === 'c' ? toFahrenheit(temperature) : temperature;
 
   return (
     <div>
-      <h2>Калькулятор температуры воды</h2>
-      <TempInp temp={temp} setTemp={setTemp} />
-      <Verdict temp={temp} />
+      <TemperatureInput scale="c" temperature={celsius} onTemperatureChange={handleCelsiusChange} />
+      <TemperatureInput scale="f" temperature={fahrenheit} onTemperatureChange={handleFahrenheitChange} />
     </div>
   );
 }
 
-// Точка входа — компонент App
-export default function App() {
-  return (
-    <div className="App">
-      <Calculator />
-    </div>
-  );
-}
-
+export default Calculator;
