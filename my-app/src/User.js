@@ -1,38 +1,29 @@
 import React from 'react';
 import UserField from './UserField';
 
-function User({ id, name, surname, age, isEdit, toggleMode, editUser }) {
+
+function User({ id, name, surname, age, changeField }) {
   return (
-    <div>
-      name: <UserField
+    <tr>
+      <UserField
         id={id}
-        value={name}
-        field="name"
-        isEdit={isEdit}
-        editUser={editUser}
-      />,{' '}
-
-      surname: <UserField
+        text={name}
+        type="name"
+        changeField={changeField}
+      />
+      <UserField
         id={id}
-        value={surname}
-        field="surname"
-        isEdit={isEdit}
-        editUser={editUser}
-      />,{' '}
-
-      age: <UserField
+        text={surname}
+        type="surname"
+        changeField={changeField}
+      />
+      <UserField
         id={id}
-        value={age}
-        field="age"
-        isEdit={isEdit}
-        editUser={editUser}
-      />{' '}
-
-      <button onClick={() => toggleMode(id)}>
-        {isEdit ? 'save' : 'edit'}
-      </button>
-    </div>
+        text={age}
+        type="age"
+        changeField={changeField}
+      />
+    </tr>
   );
 }
-
 export default User;
