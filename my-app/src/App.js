@@ -5,25 +5,27 @@ import { nanoid } from 'nanoid';
 import uuid from 'react-uuid';
 // ❌ Удалено: import { useState } from "react";
 
-
 function App() {
-	const [visible, setVisible] = useState(false);
+	const [city, setCity] = useState('');
+
+	function handleChange(event) {
+		setCity(event.target.value);
+	}
 
 	return (
 		<div>
 			<label>
-				<input
-					type="checkbox"
-					checked={visible}
-					onChange={() => setVisible(!visible)}
-				/>
-				Показать абзац
+				Выберите город:
+				<select value={city} onChange={handleChange}>
+					<option value="">-- выберите --</option>
+					<option value="Москва">Москва</option>
+					<option value="Санкт-Петербург">Санкт-Петербург</option>
+					<option value="Казань">Казань</option>
+					<option value="Новосибирск">Новосибирск</option>
+				</select>
 			</label>
-
-			{visible && <p>Это абзац, который можно показать или скрыть</p>}
+			<p>Ваш выбор: {city}</p>
 		</div>
 	);
 }
-
-
 export default App;
