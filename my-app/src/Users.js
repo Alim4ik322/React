@@ -3,36 +3,48 @@ import User from './User';
 import { nanoid as id } from 'nanoid';
 
 const initUsers = [
-	{ id: id(), name: 'user1', surname: 'surn1', age: 30, banned: false },
-	{ id: id(), name: 'user2', surname: 'surn2', age: 31, banned: false },
-	{ id: id(), name: 'user3', surname: 'surn3', age: 32, banned: false },
+  { id: id(), name: 'John', surname: 'Doe', age: 30, isEdit: false },
+  { id: id(), name: 'Jane', surname: 'Smith', age: 25, isEdit: false },
+  { id: id(), name: 'Mike', surname: 'Brown', age: 28, isEdit: false },
 ];
 
 function Users() {
-	const [users, setUsers] = useState(initUsers);
+  const [users, setUsers] = useState(initUsers);
 
-	function banUser(id) {
-		setUsers(users.map(user => {
-			if (user.id === id) {
-				user.banned = true;
-			}
-			return user;
-		}));
-	}
+  function toggleMode(id) {
+    setUsers(users.map(user => {
+      if (user.id === id) {
+        user.isEdit = !user.isEdit;
+      }
+      return user;
+    }));
+  }
 
-	const items = users.map(user => (
-		<User
-			key={user.id}
-			id={user.id}
-			name={user.name}
-			surname={user.surname}
-			age={user.age}
-			banned={user.banned}
-			banUser={banUser}
-		/>
-	));
+  function editUser(id, field, event) {
+    const value = field === 'age' ? Number(event.target.value) : event.target.value;
+    setUsers(users.map(user => {
+      if (user.id === id) {
+        user[field] = value;
+      }
+      return user;
+    }));
+  }
 
-	return <div>{items}</div>;
+  const list = users.map(user => (
+    <User
+      key={user.id}
+      id={user.id}
+      name={user.name}
+      surname={user.surname}
+      age={user.age}
+      isEdit={user.isEdit}
+      toggleMode={toggleMode}
+      editUser={editUser}
+    />
+  ));
+
+  return <div>{list}</div>;
 }
+
 
 export default Users;
