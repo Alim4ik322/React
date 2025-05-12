@@ -1,24 +1,17 @@
-.common-input {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 2px solid gray;
-}
-
 .input1 {
-    composes: common-input;
+    composes: beauty from "../App.module.css";
     background-color: lightblue;
-    border-color: navy;
+    border: 2px solid navy;
 }
 
 .input2 {
-    composes: common-input;
+    composes: beauty from "../App.module.css";
     background-color: lightgreen;
-    border-color: darkgreen;
+    border: 2px solid darkgreen;
 }
 
 .input3 {
-    composes: common-input;
+    composes: beauty from "../App.module.css";
     background-color: lightcoral;
-    border-color: brown;
+    border: 2px solid brown;
 }
