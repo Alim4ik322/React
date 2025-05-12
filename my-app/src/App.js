@@ -6,22 +6,24 @@ import uuid from 'react-uuid';
 // ❌ Удалено: import { useState } from "react";
 
 function App() {
-	const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
+	const [notes] = useState(['a', 'b', 'c']);
+	const [input, setInput] = useState('');
 
-	function remove(index) {
-		const copy = [...notes];
-		copy.splice(index, 1);
-		setNotes(copy);
+	function handleClick(note) {
+		setInput(note);
 	}
 
 	return (
-		<ul>
-			{notes.map((note, index) => (
-				<li key={index}>
-					{note} <button onClick={() => remove(index)}>Удалить</button>
-				</li>
-			))}
-		</ul>
+		<div>
+			<ul>
+				{notes.map((note, index) => (
+					<li key={index} onClick={() => handleClick(note)}>
+						{note}
+					</li>
+				))}
+			</ul>
+			<input value={input} onChange={(e) => setInput(e.target.value)} />
+		</div>
 	);
 }
 
