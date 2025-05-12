@@ -1,33 +1,35 @@
 import React from 'react';
+import UserField from './UserField';
+
 function User({ id, name, surname, age, isEdit, toggleMode, editUser }) {
   return (
-    <div style={{ marginBottom: '10px' }}>
-      <div>
-        Имя: {
-          isEdit
-            ? <input value={name} onChange={e => editUser(id, 'name', e)} />
-            : <span>{name}</span>
-        }
-      </div>
+    <div>
+      name: <UserField
+        id={id}
+        value={name}
+        field="name"
+        isEdit={isEdit}
+        editUser={editUser}
+      />,{' '}
 
-      <div>
-        Фамилия: {
-          isEdit
-            ? <input value={surname} onChange={e => editUser(id, 'surname', e)} />
-            : <span>{surname}</span>
-        }
-      </div>
+      surname: <UserField
+        id={id}
+        value={surname}
+        field="surname"
+        isEdit={isEdit}
+        editUser={editUser}
+      />,{' '}
 
-      <div>
-        Возраст: {
-          isEdit
-            ? <input type="number" value={age} onChange={e => editUser(id, 'age', e)} />
-            : <span>{age}</span>
-        }
-      </div>
+      age: <UserField
+        id={id}
+        value={age}
+        field="age"
+        isEdit={isEdit}
+        editUser={editUser}
+      />{' '}
 
       <button onClick={() => toggleMode(id)}>
-        {isEdit ? 'Сохранить' : 'Редактировать'}
+        {isEdit ? 'save' : 'edit'}
       </button>
     </div>
   );
